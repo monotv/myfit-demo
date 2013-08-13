@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<link href="css/styles.css" rel="stylesheet">
+
+		<script src="css/source-sans-pro.js"></script>		
+
+		<script id="home-tpl" type="text/x-handlebars-template">
+			<div class='header'><h1>myfit</h1></div>
+			<div class="scroll">
+				<div class='menu'>
+					<ul>
+						<li><a class="nav" data-id='training' href="#training">Start</a></li>
+						<li><a class="nav" data-id='plans' href="#plans">Pl&auml;ne</a></li>
+						<li><a class="nav" data-id='archive' href="#archive">Archiv</a></li>
+					</ul>
+				</div>
+			</div>
+		</script>
+
+		<script id="training-tpl" type="text/x-handlebars-template">
+			<div class='header'><h1>start</h1></div>
+			<div class="scroll">
+				<div class='step-1'>
+					<form action="" method="post">
+						<label for="locker">Schrank</label>
+						<input type="number" placeholder="Nummer" />
+						<label for="locker">Wertfach</label>
+						<input type="number" placeholder="Nummer" />
+					</form>
+				</div>
+			</div>
+		</script>
+
+		<script id="plans-tpl" type="text/x-handlebars-template">
+			<div class='header'><a href='#' class="button header-button header-button-left">Back</a><h1>plans</h1></div>
+			<div class='plans'>
+				<div class="scroll">
+					<ul class='plans-list'></ul>
+				</div>
+			</div>
+		</script>
+
+		<script id="archive-tpl" type="text/x-handlebars-template">
+			<div class='header'><a href='#' class="button header-button header-button-left">Back</a><h1>archive</h1></div>
+			<div class='archive'>
+				<div class="scroll">
+					<ul class='archive-list'></ul>
+				</div>
+			</div>
+		</script>
+
+		<script id="plans-li-tpl" type="text/x-handlebars-template">
+		    {{#.}}
+		    <li><a href="#plans/{{this.id}}">{{this.name}}</a></li>
+		    {{/.}}
+		</script>
+
+		<script id="archive-li-tpl" type="text/x-handlebars-template">
+		    {{#.}}
+		    <li><a href="#archive/{{this.id}}">{{this.name}}</a></li>
+		    {{/.}}
+		</script>
+	</head>
+	<body>
+		<!--<script src="phonegap.js"></script>-->
+		<script src="lib/jquery.js"></script>
+		<script src="js/storage/memory-store.js"></script>
+		<script src="lib/handlebars.js"></script>
+		<script src="js/views/HomeView.js"></script>
+		<script src="js/views/PlansView.js"></script>
+		<script src="js/views/ArchiveView.js"></script>
+		<script src="js/views/TrainingView.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
+</html>
