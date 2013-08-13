@@ -6,7 +6,7 @@ var PlansView = function(store) {
 
     that.render = function() {    	
         this.el.html(PlansView.template());
-        $('.plans-list').html(PlansView.liTemplate(store.plans));
+        $('.plans-list').html(PlansView.liTemplate(store.getItems("plans")));
         return this;
     };
  

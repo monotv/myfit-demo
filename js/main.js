@@ -2,12 +2,9 @@ var app = {
     initialize: function() {
         var self = this;        
         self.registerEvents();
-        self.store = new MemoryStore(function() {
+        self.store = new LocalStorageStore(function() {
             self.route();
         });
-
-        self.plansURL = /^#employees\/(\d{1,})/;
-
     },
     showAlert: function (message, title) {
         if (navigator.notification) {
@@ -45,29 +42,41 @@ var app = {
 
     },
     route: function() {
+        var self = this;        
         var hash = window.location.hash;
+
+        self.urls = {
+            plansDetails: /^#plans\/(\d{1,})/,
+            plansAdd: /^#plans\/add/,
+            plans: /^#plans$/
+        };
+
         if (!hash) {
             $('body').html(new HomeView().render().el);
             return;
         }
-        var match = hash.match(app.plansURL);
+        /*var match = hash.match(app.plansURL);
         if (match) {
             this.store.findById(Number(match[1]), function(plan) {
                 $('body').html(new PlansView(plan).render().el);
             });
+        } else {*/
+
+        if(hash.match('#training')){
+            $('body').html(new TrainingView(this.store).render().el);
+        } else if(hash.match(self.urls.plans)){
+            $('body').html(new PlansView(this.store).render().el);
+        } else if(hash.match(self.urls.plansAdd)){
+            $('body').html(new PlansAddView(this.store).render().el);
+        }  else if(hash.match(self.urls.plansDetails)){
+            $('body').html(new PlansDetailsView(this.store).render().el);
+        } else if(hash.match('#archive')){
+            $('body').html(new ArchiveView(this.store).render().el);
         } else {
-            if(hash == '#training'){
-                $('body').html(new TrainingView(this.store).render().el);
-            } else if(hash == '#plans'){
-                $('body').html(new PlansView(this.store).render().el);
-            } else if(hash == '#archive'){
-                $('body').html(new ArchiveView(this.store).render().el);
-            } else {
-                if(!!console){
-                    console.log('using default route');
-                }                
-                $('body').html(new HomeView().render().el);                
-            }
+            if(!!console){
+                console.log('using default route');
+            }                
+            $('body').html(new HomeView().render().el);                
         }
         return;
     }
