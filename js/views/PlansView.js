@@ -1,12 +1,12 @@
 var PlansView = function(store) {
     var that = this;
-    that.initialize = function() {
-    	that.el = $('#container');        
+    this.initialize = function() {
+    	this.el = $('<div id="container" />');
     };
 
-    that.render = function() {    	
+    this.render = function() {    	
         this.el.html(PlansView.template());
-        $('.plans-list').html(PlansView.liTemplate(store.getItems("plans")));
+        this.el.find('.plans-list').html(PlansView.liTemplate(store.getItems("plans")));
         return this;
     };
  
@@ -16,7 +16,7 @@ var PlansView = function(store) {
 	    });
 	};
  
-    that.initialize();
+    this.initialize();
 }
 PlansView.template = Handlebars.compile($("#plans-tpl").html());
 PlansView.liTemplate = Handlebars.compile($("#plans-li-tpl").html());

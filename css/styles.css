@@ -20,8 +20,6 @@ body {
     -ms-background-size: 1px 44px;
     -o-background-size: 1px 44px;
     background-size: 1px 44px;
-    height: 44px;
-    line-height: 44px;
     width: 100%;
     color: #fff;
     -webkit-user-select: none;
@@ -189,6 +187,10 @@ h2 {
     height:100px;
 }
 
+.wrapper {
+    position: relative;
+}
+
 .scroll {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -202,4 +204,41 @@ h2 {
 li>a.tappable-active {
     color: #fff;
     background-color: #4286f5;
+}
+/* JavaScript */
+.plans-add-exercises,
+.alert {
+    display: none;
+}
+/**/
+.plans-add-exercises-edit-added .btn {
+    min-height: 30px;
+}
+.plans-add-delete-exercise.btn {
+    text-indent: -9999em;
+    width: 30px;   
+    background-image: url("../img/glyphicons-halflings-white.png"); 
+    background-position: -305px 7px;
+}
+.plans-add-save-exercise.btn.btn-success {
+    text-indent: -9999em;
+    width: 30px;   
+    background-image: url("../img/glyphicons-halflings-white.png"); 
+    background-position: -281px 7px;
+}
+.plans-add-cancel-exercise.btn.btn-danger {
+    text-indent: -9999em;
+    width: 30px;
+    background-image: url("../img/glyphicons-halflings-white.png"); 
+    background-position: -305px 7px;    
+}
+.plans-add-delete-exercise.btn,
+.plans-add-delete-exercise.btn:hover {
+     text-indent: -9999em;
+    width: 30px;
+    background-image: url("../img/glyphicons-halflings.png"); 
+    background-position: -305px 7px;    
+}
+.navbar-inner .btn.btn-primary {
+    float: left;
 }

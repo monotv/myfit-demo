@@ -36,10 +36,25 @@ var app = {
 
         $(window).on('hashchange', $.proxy(this.route, this));
 
+        $(document).on('message', this.message);
+
         $(document).delegate('a.nav', 'click', function(e){
             //return false;
         });
 
+    },
+    message: function(e, data){
+        setTimeout(function(){
+            $('.wrapper').prepend('<div class="alert ' + data.type + '">' + data.message + '<strong>' + data.item + '</strong></div>');
+            $('.alert').fadeIn(function(){
+                var that = this;
+                setTimeout(function(){
+                    $(that).fadeOut(function(){
+                        $(that).remove();
+                    });
+                }, 2000);
+            });
+        }, 100);
     },
     route: function() {
         var self = this;        
@@ -48,7 +63,10 @@ var app = {
         self.urls = {
             plansDetails: /^#plans\/(\d{1,})/,
             plansAdd: /^#plans\/add/,
-            plans: /^#plans$/
+            plans: /^#plans$/,
+            exercisesDetails: /^#exercises\/(\d{1,})/,
+            exercisesAdd: /^#exercises\/add/,
+            exercises: /^#exercises$/
         };
 
         if (!hash) {
@@ -63,22 +81,51 @@ var app = {
         } else {*/
 
         if(hash.match('#training')){
+
             $('body').html(new TrainingView(this.store).render().el);
+
+        } else if(hash.match(self.urls.exercises)){
+
+            $('body').html(new ExercisesView(this.store).render().el);
+
+        } else if(hash.match(self.urls.exercisesAdd)){
+
+            $('body').html(new ExercisesAddView(this.store).render().el);
+
+        }  else if(hash.match(self.urls.exercisesDetails)){
+
+            $('body').html(new ExercisesDetailsView(this.store).render().el);
+
         } else if(hash.match(self.urls.plans)){
+
             $('body').html(new PlansView(this.store).render().el);
+
         } else if(hash.match(self.urls.plansAdd)){
+
             $('body').html(new PlansAddView(this.store).render().el);
-        }  else if(hash.match(self.urls.plansDetails)){
+
+        } else if(hash.match(self.urls.plansDetails)){
+
             $('body').html(new PlansDetailsView(this.store).render().el);
+
         } else if(hash.match('#archive')){
+
             $('body').html(new ArchiveView(this.store).render().el);
+
         } else {
+
             if(!!console){
+
                 console.log('using default route');
-            }                
+
+            }
+
             $('body').html(new HomeView().render().el);                
+
         }
+
         return;
+
     }
 };
 

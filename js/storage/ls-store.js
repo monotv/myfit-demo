@@ -37,7 +37,8 @@ var LocalStorageStore = function(successCallback, errorCallback) {
     }
 
     // mock
-    /*var plans = [
+    /*
+    var plans = [
             {"id": 1, "name": "My 1st plan"},
             {"id": 2, "name": "My 2nd plan"},
             {"id": 3, "name": "My 3rd plan"},
@@ -53,9 +54,19 @@ var LocalStorageStore = function(successCallback, errorCallback) {
             {"id": 5, "name": "My 5th archived thing"}
         ];
 
+    var exercises = [
+            {"id": 1, "name": "My 1st exercise"},
+            {"id": 2, "name": "My 2nd exercise"},
+            {"id": 3, "name": "My 3rd exercise"},
+            {"id": 4, "name": "My 4th exercise"},
+            {"id": 5, "name": "My 5th exercise"}
+        ];
+
     window.localStorage.setItem("plans", JSON.stringify(plans));
     window.localStorage.setItem("archive", JSON.stringify(archive));
-*/
+    window.localStorage.setItem("exercises", JSON.stringify(exercises));
+    */
+    
     callLater(successCallback);
 
 }

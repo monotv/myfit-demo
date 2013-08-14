@@ -1,10 +1,10 @@
 var ArchiveView = function(store) {
     var that = this;
-    that.initialize = function() {
-    	that.el = $('#container');        
+    this.initialize = function() {
+    	this.el = $('<div id="container" />'); 
     };
 
-    that.render = function() {    	
+    this.render = function() {    	
         this.el.html(ArchiveView.template());
         $('.archive-list').html(ArchiveView.liTemplate(store.archive));
         return this;
@@ -16,7 +16,7 @@ var ArchiveView = function(store) {
 	    });
 	};
  
-    that.initialize();
+    this.initialize();
 }
 ArchiveView.template = Handlebars.compile($("#archive-tpl").html());
 ArchiveView.liTemplate = Handlebars.compile($("#archive-li-tpl").html());

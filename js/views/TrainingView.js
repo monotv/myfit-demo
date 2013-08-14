@@ -1,14 +1,14 @@
 var TrainingView = function(store) {
     var that = this;
-    that.initialize = function() {
-        this.el = $('<div id="container"></div>');      
+    this.initialize = function() {
+        this.el = $('<div id="container" />');    
     };
 
-    that.render = function() {
+    this.render = function() {
         this.el.html(TrainingView.template()); 
         return this;
     };
 
-    that.initialize();
+    this.initialize();
 }
 TrainingView.template = Handlebars.compile($("#training-tpl").html());
