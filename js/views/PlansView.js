@@ -6,6 +6,7 @@ var PlansView = function(store) {
 
     this.render = function() {    	
         this.el.html(PlansView.template());
+        console.log(store.getItems("plans"))
         this.el.find('.plans-list').html(PlansView.liTemplate(store.getItems("plans")));
         return this;
     };

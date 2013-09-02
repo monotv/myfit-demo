@@ -5,7 +5,8 @@ var PlansAddView = function(store) {
         //this.serializeArray();
         this.el.on('click', '.save', function(e){
             var data = $(this).parents('form').serializeArray();
-            console.log(data)
+            var elms = $('.plans-add-exercises-list').find('div');
+            data['exercises'] = that.getExercises(elms);
             that.addPlan(data, e);
         });
         this.el.on('click', '.add', function(e){
@@ -17,17 +18,18 @@ var PlansAddView = function(store) {
             return false;
         });
         this.el.on('click', '.plans-add-save-exercise', function(e){
-            /*var plans = JSON.parse(localStorage.getItem('plans'));
-            plans.push($(this).parents('form').serializeArray());
-            localStorage.setItem('plans', JSON.stringify(plans));*/
+            //plans.push($(this).parents('form').serializeArray());
+            //localStorage.setItem('plans', JSON.stringify(plans));
             //var plans = JSON.parse(localStorage.getItem('plans'));
-            var data = $(this).parents('form').serializeArray()
+            var data = $(this).parents('.plans-add-exercises-form').serializeArray();
 
             var dataObj = {};
 
             for (var i=0; i<data.length; i++) {
                 dataObj[data[i].name] = data[i].value;
             }
+
+            dataObj['strJson'] = JSON.stringify(dataObj);
 
             $('.plans-add-exercises-list').append(PlansAddView.addedLiTemplate(dataObj));
             $('.plans-add-exercises').stop().fadeOut(function(){
@@ -60,7 +62,6 @@ var PlansAddView = function(store) {
     this.addPlan = function(data, event){
         var plans = JSON.parse(localStorage.getItem('plans')) || [];
         if(data[0].value == ''){
-            console.log(data)
             var messageObj = {
                 type: 'alert-error',
                 message: 'Bitte geben Sie einen Wert ein f&uuml;r: ',                
@@ -69,9 +70,12 @@ var PlansAddView = function(store) {
             $(that.el).trigger('message', messageObj);
             event.preventDefault();
         } else {
+            var id = this.generateUuid();
             var key = data[0].name;
             var value = data[0].value;
             var item = {};
+            item['id'] = id;
+            item['exercises'] = data['exercises'];
             item[key] = value;
             plans.push(item);
             localStorage.setItem('plans', JSON.stringify(plans));
@@ -82,6 +86,19 @@ var PlansAddView = function(store) {
             }            
             $(that.el).trigger('message', messageObj);            
         }
+    }
+
+    this.getExercises = function(elms){
+        var exercises = [];
+        //console.log("each", elms)
+        $(elms).each(function(){
+            exercises.push($(this).data('exercise'));
+        });
+        return exercises;
+    }
+
+    this.generateUuid = function(){
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
     }
 
 	this.findByName = function() {

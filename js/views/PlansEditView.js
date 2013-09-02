@@ -5,6 +5,7 @@ var PlansAddView = function(store) {
         //this.serializeArray();
         this.el.on('click', '.save', function(e){
             var data = $(this).parents('form').serializeArray();
+            console.log("wtf")
             that.addPlan(data, e);
         });
         this.el.on('click', '.add', function(e){
@@ -21,7 +22,6 @@ var PlansAddView = function(store) {
             localStorage.setItem('plans', JSON.stringify(plans));*/
             //var plans = JSON.parse(localStorage.getItem('plans'));
             var data = $(this).parents('form').serializeArray();
-            console.log(data)
             that.addExerciseToPlan(data, e);
             $('.plans-add-exercises-list').html(PlansAddView.addedLiTemplate());
             e.preventDefault();
@@ -81,9 +81,11 @@ var PlansAddView = function(store) {
             $(that.el).trigger('message', messageObj);
             event.preventDefault();
         } else {
+            var id = this.generateUuid();
             var key = data[0].name;
             var value = data[0].value;
             var item = {};
+            item['id'] = id;
             item[key] = value;
             plans.push(item);
             localStorage.setItem('plans', JSON.stringify(plans));
@@ -101,6 +103,10 @@ var PlansAddView = function(store) {
 	        $('.plans-list').html(PlansView.liTemplate(plans));
 	    });
 	};
+
+    this.generateUuid = function(){
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
+    }
  
     this.initialize();
 }
