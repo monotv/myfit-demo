@@ -109,9 +109,9 @@ li {
 
 li {
     padding: 0;
-    display: -webkit-box;
+    /*display: -webkit-box;
     display: -moz-box;
-    display: box;
+    display: box;*/
     width: 100%;
 }
 
@@ -242,7 +242,23 @@ li>a.tappable-active {
 .navbar-inner .btn.btn-primary {
     float: left;
 }
+<<<<<<< HEAD
 body {
     padding-left: 0;
     padding-right: 0;
   }
+=======
+.menu li {
+    border: none;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.menu a {
+    width: 200px;
+}
+.navbar .brand {
+    background: url("../img/logo.png") no-repeat;
+    background-size: 30px 30px;
+    background-position: 0 5px;
+}
+>>>>>>> 25896c687f80e4274fc305889868e6ee402639e9
