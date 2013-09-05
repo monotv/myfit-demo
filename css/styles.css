@@ -242,12 +242,10 @@ li>a.tappable-active {
 .navbar-inner .btn.btn-primary {
     float: left;
 }
-<<<<<<< HEAD
 body {
     padding-left: 0;
     padding-right: 0;
   }
-=======
 .menu li {
     border: none;
     margin-bottom: 10px;
@@ -261,4 +259,3 @@ body {
     background-size: 30px 30px;
     background-position: 0 5px;
 }
->>>>>>> 25896c687f80e4274fc305889868e6ee402639e9
