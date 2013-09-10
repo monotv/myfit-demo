@@ -42,7 +42,7 @@
 		<div class="meta">
 		</div>
 		<div class="wrapper scroll">			
-			<div class="step-1">
+			<div class="training">
 				<form action="" method="post">
 					<fieldset>
 						<label for="locker">Schrank</label>
@@ -51,9 +51,45 @@
 						<input id="safe" type="number" placeholder="Nummer" />
 					</fieldset>
 					<fieldset>
-						<a class="btn btn-success" data-id='training' href="#training/chooseplan">Weiter</a>
+						<a class="btn btn-success" data-id='training' href="#training/choose">Weiter</a>
 					</fieldset>
 				</form>
+			</div>
+		</div>
+	</script>
+
+	<script id="training-choose-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">training choose</a>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper scroll">
+			<div class="plans training">
+				<ul class="plans-list"></ul>
+			</div>
+		</div>
+	</script>
+
+	<script id="training-started-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#training/choose' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">training {{this.name}}</a>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper scroll">
+			<div class="training started">
+				{{this.name}}
+				<span class="countdown">
+					<span class="minutes">{{timer.minutes}}</span> : <span class="seconds">{{timer.seconds}}</span>
+				</span>
+				<a class="start" href="#">start</a>
 			</div>
 		</div>
 	</script>
@@ -189,6 +225,11 @@
 		{{/.}}
 	</script>
 
+	<script id="training-choose-li-tpl" type="text/x-handlebars-template">
+		{{#.}}
+		<li><a href="#training/started/{{this.id}}">{{this.name}}</a></li>
+		{{/.}}
+	</script>
 
 	<script id="plans-add-exercises-li-tpl" type="text/x-handlebars-template">
 		<div class="plans-add-exercises">
@@ -207,6 +248,20 @@
 				</fieldset>
 			</form>
 		</div>
+	</script>
+
+	<script id="training-started-exercises-added-li-tpl" type="text/x-handlebars-template">
+		{{#.}}
+		<li>
+			<div data-exercise="{{this.strJson}}" class="plans-add-exercises-edit-added btn-group">			
+				<button class="btn">{{this.exercisename}}</button>
+				<button class="btn">{{this.sets}}</button>
+				<button class="btn">{{this.repeats}}</button>
+				<button class="btn">{{this.weight}}</button>
+				<button type="button" class="plans-add-delete-exercise btn"><span>delete</span></button>
+			</div>
+		</li>
+		{{/.}}
 	</script>
 
 	<script id="plans-add-exercises-added-li-tpl" type="text/x-handlebars-template">
@@ -280,6 +335,8 @@
 	<script src="js/views/ArchiveView.js"></script>
 
 	<script src="js/views/TrainingView.js"></script>
+	<script src="js/views/TrainingStartedView.js"></script>
+	<script src="js/views/TrainingChooseView.js"></script>
 
 	<script src="js/bootstrap.js"></script>
 	<script src="js/main.js"></script>

@@ -64,9 +64,12 @@ var app = {
             plansDetails: /^#plans\/(\w{1,})/,
             plansAdd: /^#plans\/add/,
             plans: /^#plans$/,
-            exercisesDetails: /^#exercises\/(\d{1,})/,
+            exercisesDetails: /^#exercises\/(\w{1,})/,
             exercisesAdd: /^#exercises\/add/,
-            exercises: /^#exercises$/
+            exercises: /^#exercises$/,
+            training: /^#training$/,
+            trainingChoose: /^#training\/choose/,
+            trainingStarted: /^#training\/started\/(\w{1,})/
         };
 
         if (!hash) {
@@ -80,9 +83,17 @@ var app = {
             });
         } else {*/
 
-        if(hash.match('#training')){
+        if(hash.match(self.urls.training)){
 
             $('body').html(new TrainingView(this.store).render().el);
+
+        } else if(hash.match(self.urls.trainingStarted)){
+
+            $('body').html(new TrainingStartedView(this.store).render().el);
+
+        }  else if(hash.match(self.urls.trainingChoose)){
+
+            $('body').html(new TrainingChooseView(this.store).render().el);
 
         } else if(hash.match(self.urls.exercises)){
 
