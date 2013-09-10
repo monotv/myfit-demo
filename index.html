@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link href="css/fonts.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+
+	<script src="css/source-sans-pro.js"></script>		
+
+	<script id="home-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#">myfit</a>
+				</div>
+			</div>
+		</div>
+		<div class="meta">
+		</div>
+		<div class="wrapper scroll">
+			<div class="menu">
+				<ul>
+					<li><a class="btn btn-success" data-id='training' href="#training">Start</a></li>
+					<li><a class="btn light" data-id='plans' href="#plans">Pl&auml;ne</a></li>
+					<li><a class="btn light" data-id='exercises' href="#exercises">&Uuml;bungen</a></li>
+					<li><a class="btn light" data-id='archive' href="#archive">Archiv</a></li>
+				</ul>
+			</div>
+		</div>		
+	</script>
+
+	<script id="training-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">training</a>
+				</div>
+			</div>
+		</div>
+		<div class="meta">
+		</div>
+		<div class="wrapper scroll">			
+			<div class="step-1">
+				<form action="" method="post">
+					<fieldset>
+						<label for="locker">Schrank</label>
+						<input id="locker" type="number" placeholder="Nummer" />
+						<label for="safe">Wertfach</label>
+						<input id="safe" type="number" placeholder="Nummer" />
+					</fieldset>
+					<fieldset>
+						<a class="btn btn-success" data-id='training' href="#training/chooseplan">Weiter</a>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</script>
+
+	<script id="plans-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">plans</a>
+				</div>
+			</div>
+		</div>
+		<div class="meta">
+			<a class="btn" href="#plans/add">add plan</a>
+		</div>
+		<div class="wrapper scroll">
+			<div class="plans">
+				<ul class="plans-list"></ul>
+			</div>
+		</div>
+	</script>
+
+	<script id="plans-details-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#plans' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">plans details: {{this.name}}</a>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper scroll">
+			<div class="plans">
+				<ul class="exercises-list"><li>No exercises added.</li></ul>
+			</div>
+		</div>
+	</script>
+
+	<script id="plans-add-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#plans' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">add plan</a>
+				</div>
+			</div>
+		</div>
+		<div class="meta">
+		</div>
+		<div class="wrapper scroll">
+			<div class="add-plan-data">
+				<form action="" method="post" class="form-inline">
+					<fieldset>
+						<label for="name">Name</label>
+						<input id="name" name="name" type="text" placeholder="Name" />
+					</fieldset>
+					<h2>Exercises:</h2>
+					<ul class="plans-add-exercises-list"></ul>
+					<a href="#plans">Abbrechen</a>
+					<a class="add" href="#exercises">&Uuml;bung hinzuf&uuml;gen</a>
+					<a class="save" href="#plans">Speichern</a>
+				</form>					
+			</div>
+		</div>
+	</script>
+
+	<script id="exercises-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">exercises</a>
+				</div>
+			</div>
+		</div>
+		<div class="meta">
+			<a class="btn" href="#exercises/add">add exercise</a>
+		</div>
+		<div class="wrapper scroll">
+			<div class="exercises">
+				<ul class='exercises-list'></ul>
+			</div>
+		</div>
+	</script>
+
+	<script id="exercises-add-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#exercises' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">add exercise</a>
+				</div>
+			</div>
+		</div>
+		<div class="meta">
+		</div>
+		<div class="wrapper scroll">
+			<div class="add-exercise-data">
+				<form action="" method="post">
+					<fieldset>
+						<label for="name">Name</label>
+						<input id="name" name="name" type="text" placeholder="Name" />
+					</fieldset>			
+					<a href="#exercises">Abbrechen</a>						
+					<a class="save" href="#exercises">Speichern</a>
+				</form>
+			</div>
+		</div>
+	</script>
+
+	<script id="archive-tpl" type="text/x-handlebars-template">
+		<div class="header navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href='#' class="btn back btn-primary">*</a>
+					<a class="brand" href="#">archive</a>
+				</div>
+			</div>
+		</div>
+		<div class="meta">
+		</div>
+		<div class="wrapper scroll">
+			<div class="archive">
+				<ul class='archive-list'></ul>
+			</div>
+		</div>
+	</script>
+
+	<script id="plans-li-tpl" type="text/x-handlebars-template">
+		{{#.}}
+		<li><a href="#plans/{{this.id}}">{{this.name}}</a></li>
+		{{/.}}
+	</script>
+
+
+	<script id="plans-add-exercises-li-tpl" type="text/x-handlebars-template">
+		<div class="plans-add-exercises">
+			<form class="plans-add-exercises-form">
+				<fieldset>
+					<label for="exercisename">Name</label>
+					<input class="input-medium" id="exercisename" name="exercisename" type="text" placeholder="Name" />
+					<label for="sets">Sets</label>
+					<input class="input-mini" id="sets" name="sets" type="number" placeholder="Sets" />
+					<label for="repeats">Repeats</label>
+					<input class="input-mini" id="repeats" name="repeats" type="number" placeholder="Repeats" />
+					<label for="weight">Weight</label>
+					<input class="input-mini" id="weight" name="weight" type="number" placeholder="kg" />
+					<button type="button" class="plans-add-save-exercise btn btn-success"><span>save</span></button>
+					<button type="button" class="plans-add-cancel-exercise btn btn-danger"><span>cancel</span></button>
+				</fieldset>
+			</form>
+		</div>
+	</script>
+
+	<script id="plans-add-exercises-added-li-tpl" type="text/x-handlebars-template">
+		{{#.}}
+		<li>
+			<div data-exercise="{{this.strJson}}" class="plans-add-exercises-edit-added btn-group">			
+				<button class="btn">{{this.exercisename}}</button>
+				<button class="btn">{{this.sets}}</button>
+				<button class="btn">{{this.repeats}}</button>
+				<button class="btn">{{this.weight}}</button>
+				<button type="button" class="plans-add-delete-exercise btn"><span>delete</span></button>
+			</div>
+			<fieldset class="exercise" data-rank="{{this.rank}}">
+				<input name="name" type="hidden" value="{{this.exercisename}}" />
+				<input name="sets" type="hidden" value="{{this.sets}}" />
+				<input name="repeats" type="hidden" value="{{this.repeats}}" />
+				<input name="weight" type="hidden" value="{{this.weight}}" />				
+			</fieldset>
+		</li>
+		{{/.}}
+	</script>
+
+	<script id="plans-edit-exercises-added-li-tpl" type="text/x-handlebars-template">
+		{{#.}}
+		<li>	
+			<div data-exercise="" class="plans-add-exercises-edit-added btn-group">
+				<button class="btn">{{this.name}}</button>
+				<button class="btn">{{this.sets}}</button>
+				<button class="btn">{{this.repeats}}</button>
+				<button class="btn">{{this.weight}}</button>
+			</div>
+			<fieldset>
+				<input name="name" type="hidden" value="" />
+				<input name="sets" type="number" value="" />
+				<input name="repeats" type="number" value="" />
+				<input name="weight" type="number" value="" />
+				<button type="button" class="plans-add-delete-exercise btn btn-success"><span>delete</span></button>
+			</fieldset>
+		</li>
+		{{/.}}
+	</script>
+
+	<script id="exercises-li-tpl" type="text/x-handlebars-template">
+		{{#.}}
+		<li><a href="#exercises/{{this.id}}">{{this.name}}</a></li>
+		{{/.}}
+	</script>
+
+	<script id="archive-li-tpl" type="text/x-handlebars-template">
+		{{#.}}
+		<li><a href="#archive/{{this.id}}">{{this.name}}</a></li>
+		{{/.}}
+	</script>
+</head>
+<body>
+
+	<script src="phonegap.js"></script>
+	<script src="lib/jquery.js"></script>
+	<script src="js/storage/ls-store.js"></script>
+	<script src="lib/handlebars.js"></script>
+
+	<script src="js/views/HomeView.js"></script>
+
+	<script src="js/views/PlansView.js"></script>
+	<script src="js/views/PlansDetailsView.js"></script>
+	<script src="js/views/PlansAddView.js"></script>
+
+	<script src="js/views/ExercisesView.js"></script>
+	<script src="js/views/ExercisesAddView.js"></script>
+
+	<script src="js/views/ArchiveView.js"></script>
+
+	<script src="js/views/TrainingView.js"></script>
+
+	<script src="js/bootstrap.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+</html>
