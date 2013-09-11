@@ -298,3 +298,12 @@ body {
     margin: 2px 0 0 0;
     text-indent: -11px;
 }
+.training.started .exercises-list li {
+    border: none;
+}
+.training.started .exercises-list li ul.exercises {
+    width: 100%;
+}
+.training.started .exercises-list li ul.exercises li {
+    width: 25%;
+}

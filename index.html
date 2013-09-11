@@ -86,6 +86,8 @@
 		<div class="wrapper scroll">
 			<div class="training started">
 				{{this.name}}
+				<ul class="exercises-list">
+				</ul>
 				<span class="countdown">
 					<span class="minutes">{{timer.minutes}}</span> : <span class="seconds">{{timer.seconds}}</span>
 				</span>
@@ -253,12 +255,13 @@
 	<script id="training-started-exercises-added-li-tpl" type="text/x-handlebars-template">
 		{{#.}}
 		<li>
-			<div data-exercise="{{this.strJson}}" class="plans-add-exercises-edit-added btn-group">			
-				<button class="btn">{{this.exercisename}}</button>
-				<button class="btn">{{this.sets}}</button>
-				<button class="btn">{{this.repeats}}</button>
-				<button class="btn">{{this.weight}}</button>
-				<button type="button" class="plans-add-delete-exercise btn"><span>delete</span></button>
+			<div data-exercise="{{this.strJson}}" class="plans-add-exercises-edit-added btn-group">	
+				<ul class="exercise">
+					<li>{{this.exercisename}}</li>
+					<li>{{this.sets}}</li>
+					<li>{{this.repeats}}</li>
+					<li>{{this.weight}}</li>
+				</ul>		
 			</div>
 		</li>
 		{{/.}}
