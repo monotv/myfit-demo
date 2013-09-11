@@ -42,7 +42,6 @@ var TrainingStartedView = function(store) {
                 secondsField.text(seconds < 10 ? "0"+seconds : seconds);
              }, // callback for each second
             onCounterEnd: function(){
-                alert('counter ended!');
                 navigator.notification.beep(3);
                 navigator.notification.vibrate(2000);
             } // final action
